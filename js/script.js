@@ -13,16 +13,19 @@ btn.addEventListener("click", function(){
     setTimeout(function(){
         let userArray = [];
         for(let i = 1; i <= 5; i++){
-            let userNumber = prompt(`Scrivi il ${i}° numero che ricordi`);
+            let userNumber = parseInt(prompt(`Scrivi il ${i}° numero che ricordi`));
             userArray.push(userNumber)  
         }
-        //comparazione del contenuto degli array, con sort per evitare che l'ordine dei numeri abbia peso
-        if (userArray.sort().toString() === simonArray.sort().toString()){
+        //comparazione del contenuto degli array
+        let comparation = whichBelongsTo(simonArray, userArray);
+
+        //risultati
+        if (comparation.length === 5){
             alert(`Hai vinto! I numeri erano ${simonArray.join(" ")} e tu li hai indovinati tutti!`);
         } else {
-            alert(`Hai perso. I numeri erano ${simonArray.join(" ")} e tu hai invece scritto ${userArray.join(" ")}.`)
+            alert(`Hai perso. I numeri erano ${simonArray.join(" ")} e tu hai invece scritto ${userArray.join(" ")}, per un totale di ${comparation.length} punti.`)
         }
-    }, 30500)
+    }, 35000)
 })
 
 
@@ -41,4 +44,19 @@ function generateRandomNumbers(num, max){
         }
     }
     return randomNumbers;
+}
+
+//funzione per confrontare se le ipotesi dell'utente coincidono con quelle da ricordare
+//array1, array2 -> array, per le due liste di numeri
+//return -> un array, contentente solo i numeri in comune
+function whichBelongsTo(array1, array2){
+    let numbers = []
+    for (let i = 0; i < 5; i++){
+        console.log(array2[i])
+        if (array1.includes(array2[i])){
+            console.log("Appartiene", array2[i])
+            numbers.push(array2[i])
+        }
+    }
+    return numbers
 }
