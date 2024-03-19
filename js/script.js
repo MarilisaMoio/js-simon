@@ -8,7 +8,7 @@ btn.addEventListener("click", function(){
     const simonArray = generateRandomNumbers(5, 20);
     container.innerHTML = simonArray.join(" ");
     //separto in due timeout diversi per generare un delay in modo tale che il prompt non venisse triggerato prima della sparizione dei numeri originali
-    setTimeout(() => container.innerHTML = "", 2000)
+    setTimeout(() => container.innerHTML = "", 30000)
     //secondo timeout, per raccogliere i numeri dell'utente
     setTimeout(function(){
         let userArray = [];
@@ -22,7 +22,7 @@ btn.addEventListener("click", function(){
         } else {
             alert(`Hai perso. I numeri erano ${simonArray.join(" ")} e tu hai invece scritto ${userArray.join(" ")}.`)
         }
-    }, 2500)
+    }, 30500)
 })
 
 
